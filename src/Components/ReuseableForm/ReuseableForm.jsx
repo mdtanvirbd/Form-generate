@@ -1,21 +1,28 @@
 import React from 'react';
 
-const ReuseableForm = () => {
-    const handleSubmit = e => {
+const ReuseableForm = ({  handleSubmit, submitBtnText = 'submit', children }) => {
+
+    const handleLocalSubmit = (e) => {
         e.preventDefault();
+        const data = {
+            name: e.target.name.value,
+            email: e.target.email.value,
+            password: e.target.password.value
+        }
+        handleSubmit(data);
     };
 
     return (
         <div>
-            <h2>Sign up</h2>
-            <form onSubmit={handleSubmit}>
+            {children}
+            <form onSubmit={handleLocalSubmit}>
                 <input type="text" name="name" />
                 <br />
-                <input type="email" name="email"></input>
+                <input type="email" name="email" />
                 <br />
                 <input type="password" name="password" />
                 <br />
-                <input type="submit" value="Submit" />
+                <input type="submit" value={submitBtnText} />
             </form>
         </div>
     );

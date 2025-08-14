@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 
 const RefForm = () => {
@@ -6,10 +6,15 @@ const RefForm = () => {
     const emailRef = useRef(null);
     const passRef =  useRef(null);
 
+    useEffect(() => {
+        nameRef.current.focus();}, []);
+
 
     const handleSubmit = e =>{
         e.preventDefault();
         console.log(nameRef.current.value)
+        console.log(emailRef.current.value);
+        console.log(passRef.current.value); 
     }
     return (
         <div>
@@ -18,9 +23,12 @@ const RefForm = () => {
                  type="text" name="name" />
                 <br />
                 <input 
-                ref={emailRef}
-                type="email" name="email"></input>
-                <br />
+                 ref={emailRef} 
+                 defaultValue="rojoni@.com"
+                 type="email" 
+                 name="email"
+                   />
+                   <br />
                 <input
                 ref={passRef}
                  type="password"name="password"/>

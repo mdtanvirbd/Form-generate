@@ -1,17 +1,20 @@
-import React from 'react';
-import Cousin from '../Cousin/Cousin';
+import React, { useContext } from "react";
+import Cousin from "../Cousin/Cousin";
+import { MoneyContext } from "../Grandpa/Grandpa";
 
 const Aunty = () => {
-    return (
-        <div>
-           <h2>Aunty</h2>
-           <section className='flex'>
-            <Cousin name="Rojoni" />
-            <Cousin name="Rojina" />
-
-            </section> 
-        </div>
-    );
+  const [money, setMoney] = useContext(MoneyContext);
+  return (
+    <div>
+      <h2>Aunty</h2>
+      <section className="flex">
+        <Cousin name="Rojoni" />
+        <Cousin name="Rojina" />
+      </section>
+      <p>Money:{money}</p>
+      <button onClick={() => setMoney(money + 1000)}>Add 1000 tk</button>
+    </div>
+  );
 };
 
 export default Aunty;
